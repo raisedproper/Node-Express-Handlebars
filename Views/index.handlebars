@@ -1,0 +1,50 @@
+{{!-- Setup the index.handlebars to have the template that Handlebars can render onto. Create a button in index.handlebars
+that will submit the user input into the database. --}}
+<div style="background:transparent !important" class="jumbotron">
+    <div class="container">
+        <center>
+            <img src="assets/img/Good_Burger_logo.png" alt="logo">
+            <p class="font">"Welcome to Good Burger, home of the Good Burger! Can I take your order?"</p>
+        </center>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <center>
+                <h3 class="font">BURGERS AVAILABLE:</h3>
+                <ul class="list-group">
+                    {{#each burgers}}
+                      {{#unless devoured}}
+                       {{> burgers/burger-block devoured=true}}
+                      {{/unless}}
+                    {{/each}}
+                </ul>
+            </center>
+        </div>
+        <div class="col-md-3">
+            <center>
+                <form class="personalize">
+                    <div class="form-group">
+                        <h3 class="font">PERSONALIZE YOUR BURGER:</h3>
+                        <label for="burgerForm"></label>
+                        <textarea class="form-control" id="burgerForm" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-info btn-sm">Submit</button>
+                </form>
+            </center>
+        </div>
+        <div class="col">
+            <center>
+                <h3 class="font">BURGERS SOLD:</h3>
+                <ul class="list-group">
+                    {{#each burgers}}
+                      {{#if this.devoured}}
+                        {{> burgers/burger-block devoured=false}}
+                      {{/if}}
+                    {{/each}}
+                </ul>
+            </center>
+        </div>
+    </div>
+</div>
